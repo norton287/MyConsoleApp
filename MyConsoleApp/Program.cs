@@ -133,8 +133,8 @@ namespace MyConsoleApp
 
             foreach (var s in myList)
             {
-                var Result = s.EndsWith(".", StringComparison.CurrentCultureIgnoreCase);
-                Console.WriteLine($"Ends with '.'? {Result}");
+                var Result = s.EndsWith("s", StringComparison.CurrentCultureIgnoreCase);
+                Console.WriteLine($"Ends with 's'? {Result}");
             }
 
             _stopwatch.Stop();
