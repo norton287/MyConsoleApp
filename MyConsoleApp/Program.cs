@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace MyConsoleApp
 {
@@ -17,6 +18,11 @@ namespace MyConsoleApp
             var searchSubString = new SearchSubString();
             searchSubString.SubString();
             
+            var searchStartsWith = new SearchStartsWith();
+            searchStartsWith.StartsWith();
+
+            var searchEndsWith = new SearchEndsWith();
+            searchEndsWith.EndsWith();
         }
 	}
 
@@ -52,9 +58,8 @@ namespace MyConsoleApp
 
             var myList = buildStringList.StringList;
 
-            foreach (var s in myList)
+            foreach (var Result in myList.Select(s => s.Contains("Lorem ipsum dolor sit amet")))
             {
-                bool Result = s.Contains("Lorem ipsum dolor sit amet");
                 Console.WriteLine($"Does it contain the string we are searching for? {Result}");
             }
 
@@ -97,6 +102,15 @@ namespace MyConsoleApp
         {
             _stopwatch.Restart();
 
+            var buildStringList = new BuildStringList();
+            buildStringList.BuildList();
+
+            var myList = buildStringList.StringList;
+
+            foreach (var Result in myList.Select(s => s.StartsWith("a", StringComparison.Ordinal)))
+            {
+                Console.WriteLine($"Starts with \"a\"? {Result}");
+            }
 
             _stopwatch.Stop();
             Console.WriteLine();
@@ -106,7 +120,27 @@ namespace MyConsoleApp
 
     public class SearchEndsWith
     {
+        private readonly Stopwatch _stopwatch = new Stopwatch();
 
+        public void EndsWith()
+        {
+            _stopwatch.Restart();
+
+            var buildStringList = new BuildStringList();
+            buildStringList.BuildList();
+
+            var myList = buildStringList.StringList;
+
+            foreach (var s in myList)
+            {
+                var Result = s.EndsWith(".", StringComparison.CurrentCultureIgnoreCase);
+                Console.WriteLine($"Ends with '.'? {Result}");
+            }
+
+            _stopwatch.Stop();
+            Console.WriteLine();
+            Console.WriteLine("Total Time To Do String Ends With was {0}", _stopwatch.Elapsed);
+        }
     }
 
     public class Menu
