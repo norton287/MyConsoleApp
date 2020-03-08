@@ -27,6 +27,7 @@ namespace MyConsoleApp
             searchEndsWith.EndsWith();
 
             _stopwatch.Stop();
+
             Console.WriteLine();
             Console.WriteLine("Total Time To Do All Searches {0}", _stopwatch.Elapsed);
             Console.ReadKey();
