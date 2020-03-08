@@ -30,6 +30,7 @@ namespace MyConsoleApp
 
             Console.WriteLine();
             Console.WriteLine("Total Time To Do All Searches {0}", _stopwatch.Elapsed);
+            Console.WriteLine("Press any key to Exit....");
             Console.ReadKey();
         }
 	}
