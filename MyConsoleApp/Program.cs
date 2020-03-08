@@ -7,10 +7,12 @@ namespace MyConsoleApp
 {
     class Program
     {
+        private static readonly Stopwatch _stopwatch = new Stopwatch();
+
         private static void Main()
 		{
-            var menu = new Menu();
-            menu.BuildMenu();
+
+            _stopwatch.Restart();
 
             var searchEntireString = new SearchEntireString();
             searchEntireString.StringSearch();
@@ -23,6 +25,11 @@ namespace MyConsoleApp
 
             var searchEndsWith = new SearchEndsWith();
             searchEndsWith.EndsWith();
+
+            _stopwatch.Stop();
+            Console.WriteLine();
+            Console.WriteLine("Total Time To Do All Searches {0}", _stopwatch.Elapsed);
+            Console.ReadKey();
         }
 	}
 
@@ -66,6 +73,7 @@ namespace MyConsoleApp
             _stopwatch.Stop();
             Console.WriteLine();
             Console.WriteLine("Total Time To Do StringSearch was {0}", _stopwatch.Elapsed);
+            Console.WriteLine();
         }
 
     }
@@ -91,6 +99,7 @@ namespace MyConsoleApp
             _stopwatch.Stop();
             Console.WriteLine();
             Console.WriteLine("Total Time To Do SubString Search was {0}", _stopwatch.Elapsed);
+            Console.WriteLine();
         }
     }
 
@@ -107,14 +116,15 @@ namespace MyConsoleApp
 
             var myList = buildStringList.StringList;
 
-            foreach (var Result in myList.Select(s => s.StartsWith("a", StringComparison.Ordinal)))
+            foreach (var Result in myList.Select(s => s.StartsWith("L", StringComparison.Ordinal)))
             {
-                Console.WriteLine($"Starts with \"a\"? {Result}");
+                Console.WriteLine($"Starts with \"L\"? {Result}");
             }
 
             _stopwatch.Stop();
             Console.WriteLine();
             Console.WriteLine("Total Time To Do String Starts With was {0}", _stopwatch.Elapsed);
+            Console.WriteLine();
         }
     }
 
@@ -133,64 +143,15 @@ namespace MyConsoleApp
 
             foreach (var s in myList)
             {
-                var Result = s.EndsWith("s", StringComparison.CurrentCultureIgnoreCase);
-                Console.WriteLine($"Ends with 's'? {Result}");
+                var Result = s.EndsWith(".", StringComparison.CurrentCultureIgnoreCase);
+                Console.WriteLine($"Ends with '.'? {Result}");
             }
 
             _stopwatch.Stop();
             Console.WriteLine();
             Console.WriteLine("Total Time To Do String Ends With was {0}", _stopwatch.Elapsed);
-        }
-    }
-
-    public class Menu
-    {
-        public void BuildMenu()
-        {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("Welcome to the Stop Watch App!\n");
-                Console.WriteLine("Choose from the following selections:\n");
-                Console.WriteLine("Press 1 to Start The Stop Watch");
-                Console.WriteLine("Press 2 to Stop The Stop Watch");
-                Console.WriteLine("Press 3 To Quit....");
-                Console.WriteLine("\n");
-                Console.WriteLine("\n");
-                Console.WriteLine("Enter your choice: ");
-                var readKey = Console.ReadKey().Key.ToString();
-
-
-                switch (readKey)
-                {
-                    case "D1":
-                        Console.Clear();
-                        Console.WriteLine("Stop Watch Started!");
-                        Console.WriteLine("Press any key to continue.....");
-                        Console.ReadKey();
-                        continue;
-                    case "D2":
-                        Console.Clear();
-                        Console.WriteLine("Stop Watch Stopped!\n");
-                        Console.WriteLine(@"Total time on stop watch is: " + " seconds\n");
-                        Console.WriteLine("Press any key to continue.....");
-                        Console.ReadKey();
-                        continue;
-                    case "D3":
-                        Console.Clear();
-                        Console.WriteLine("Press any key to Quit.....");
-                        Console.ReadKey();
-                        break;
-                    default:
-                        Console.Clear();
-                        Console.WriteLine("Wrong key pressed........\n");
-                        Console.WriteLine("Press any key to continue.");
-                        Console.ReadKey();
-                        continue;
-                }
-
-                break;
-            }
+            Console.WriteLine();
         }
     }
 }
+
